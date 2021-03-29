@@ -1,19 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
 const Note = props => {
-
- // const [eN, seteN] = useState(false)
   
   const handleClickDelete = () => {
     props.onDelete(props.id);
   }
 
   const handleClickEdit = () => {
-    //seteN(true);
+  
     props.onEdit(props.id);
-    console.log("note");
   }
 
   return (

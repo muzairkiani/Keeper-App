@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.post("/mynotes", postNote);
 router.get("/", getNotes);
-router.get("/delete/:id", deleteNote);
-router.get("/edit/:id", editNote);
+router.delete("/delete/:id", deleteNote);
+router.put("/edit", editNote);
 
 
 

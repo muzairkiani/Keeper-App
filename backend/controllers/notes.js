@@ -17,6 +17,7 @@ export const getNotes = async (req, res) => {
 
 }
 
+
 export const postNote = async (req, res) => {
 
     const {title, content} = req.body;
@@ -38,21 +39,33 @@ export const deleteNote =  async (req, res) => {
     const {id} = req.params;
    const noteToBeDeleted = await note.findByIdAndRemove(id);
     res.json({ message: "Post deleted successfully." });
-
 }
 
 export const editNote = async (req, res) => {
 
-    const {id} = req.params;
-    //console.log(id);
+    //const {id} = req.params;
+    
+    const id= req.body._id;
     const {title, content} = req.body;
     const updatedNote = {title, content};
 
-    const noteToBeEdited = await note.findByIdAndUpdate(id, updatedNote, { new: true });
 
-    res.json([{ message: "Note edited successfully." } , noteToBeEdited]);
+    try {
+        console.log(updatedNote);
+
+        const noteToBeEdited = await note.findByIdAndUpdate(id, updatedNote, { new: true });
+        noteToBeEdited.save();
+
+        console.log("done");
+   
+        res.json(noteToBeEdited);
+
+    } catch (error) {
+
+        console.log(error);
+        
+    }
+   
 
 }
-
-
 export default router;
